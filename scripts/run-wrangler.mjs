@@ -34,6 +34,9 @@ const loadLocalEnv = () => {
     ) {
       value = value.slice(1, -1);
     }
+    // Bun auto-loads .env.local and expands $var unless backslash-escaped,
+    // so values with literal $ (e.g. the PBKDF2 hash) must be stored as \$.
+    value = value.replace(/\\\$/g, "$");
 
     if (key && process.env[key] === undefined) {
       process.env[key] = value;
