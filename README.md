@@ -30,9 +30,10 @@ Copy this prompt into your AI coding assistant, such as Claude Code, Codex, Anti
 **Recommendation:** Before deployment, configure GitHub and Cloudflare MCP servers, plugins, or other supported integrations for your AI Agent. This allows it to fork the repository, create the required Cloudflare resources, and deploy the application.
 
 ```text
-Please fork the EdgeEver repository first: https://github.com/tianma-if/edgeever
-
-After the fork is ready, use the forked repository to install and deploy EdgeEver to Cloudflare, and configure automatic upstream sync for the fork so future product updates can be pulled in.
+Please follow these steps:
+1. Fork the EdgeEver upstream repository: https://github.com/tianma-if/edgeever
+2. Use the forked repository to install and deploy EdgeEver to Cloudflare.
+3. Configure a mechanism for the fork to sync updates from the upstream repository, so it can receive the latest product features periodically or on demand.
 ```
 
 Agents should follow [AI Agent Cloudflare Deployment](docs/agent-deploy-cloudflare.md).
@@ -50,7 +51,7 @@ The automated helper commands are recommended. If you create the Cloudflare reso
 
 - Serverless, 100% free, and zero maintenance: Built on Cloudflare's Serverless architecture, running entirely within free tiers. Store up to 150k notes and 50k images without any hosting fees.
 - Open data: notes are stored in Cloudflare D1, based on standard SQLite, and can be read through REST API, MCP, and CLI.
-- AI Agent friendly: built-in MCP support lets tools such as Codex, Claude Code, and Antigravity read and organize notes with authorization.
+- AI Agent friendly: built-in MCP support lets tools such as Codex, Claude Code, and Antigravity read, organize, and maintain notes, while enabling integrations with Notion databases and Feishu Bitable.
 - Uncapped multi-device sync: self-hosted API means no restrictive commercial limits on the number of active login devices, supporting seamless synchronization across PC, tablet, and mobile (via PWA or browser).
 - Three-pane layout: notebook tree, note list, and main editor.
 - Unlimited nested notebooks.
@@ -167,4 +168,7 @@ If you want to migrate notes from other platforms to EdgeEver, please refer to t
 ## Community and Feedback
 
 - Bugs, feature requests, and deployment issues: [GitHub Issues](https://github.com/tianma-if/edgeever/issues)
-- WeChat: `m1245207870` (please mention EdgeEver)
+
+## Disclaimer
+
+EdgeEver is an independent open-source note-taking application developed and maintained by individuals and the community. It is not affiliated with, authorized, sponsored, or endorsed by Evernote Corporation or its affiliates.

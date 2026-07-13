@@ -44,8 +44,8 @@ const parseEnv = (content) => {
     ) {
       value = value.slice(1, -1);
     }
-    // Bun auto-loads .env.local and expands $var unless backslash-escaped,
-    // so values with literal $ (e.g. the PBKDF2 hash) must be stored as \$.
+    // Bun expands $ references while auto-loading .env files. Values written
+    // by this script escape literal dollars as \$ so they survive that load.
     value = value.replace(/\\\$/g, "$");
     values.set(key, value);
   }
@@ -89,7 +89,7 @@ const targetKey = (name, values) => scopedKey(name, values) || `EDGE_EVER_${name
 
 const upsertEnv = (key, value) => {
   const content = existsSync(envPath) ? readFileSync(envPath, "utf8") : "";
-  // Store literal $ as \$ so Bun's dotenv auto-load does not expand it.
+  // Keep literal dollars from being expanded by Bun when it auto-loads the file.
   const fileValue = value.replace(/\$/g, "\\$");
   const pattern = new RegExp(`^${key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}=.*$`, "m");
   const next = pattern.test(content)
